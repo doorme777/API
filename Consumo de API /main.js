@@ -29,5 +29,25 @@ async function favCat() {
   console.log(data);
 }
 
+async function saveFavouriteCat() {
+  const res = await fetch(FAV_CAT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      image_id: "dje",
+    }),
+  });
+  const data = await res.json();
+
+  console.log("Save");
+  console.log(res);
+
+  if (res.status !== 200) {
+    spanError.innerHTML = "Hubo un error: " + res.status + data.message;
+  }
+}
+
 randomCat();
 favCat();
