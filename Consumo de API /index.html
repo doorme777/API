@@ -18,7 +18,10 @@
       </article>
 
       <article>
-        <img id="img2" alt="Gato random" />
+        <figure>
+          <img id="img2" alt="Gato random" />
+        </figure>
+
         <button id="btn2" onclick="saveFavouriteCat()">Favorite</button>
       </article>
 
@@ -28,7 +31,21 @@
       </article>
     </section>
 
-    <button onclick="randomCat()">New images</button>
+    <button onclick="randomCat()" class="center">New images</button>
+
+    <section id="uploadingCat">
+      <h3>Sube la foto de tu gato</h3>
+      <form id="uploadingForm" method="POST" enctype="multipart/form-data">
+        <label for="file" class="custom-file-upload"
+          >Selecciona la foto<i class="fa-solid fa-camera"></i
+        ></label>
+        <input id="file" type="file" name="file" onchange="previewImage()" />
+        <img id="preview" />
+        <button id="submitDog" type="button" onclick="uploadPhotoCat()">
+          Subir foto de tu Gato
+        </button>
+      </form>
+    </section>
 
     <h2>Gatos favoritos</h2>
 
