@@ -1,0 +1,21 @@
+@import "basic.css";
+@import "card.css";
+@import "uploadingCat.css";
+html {
+  font-size: 65.2%;
+}
+body {
+  background-color: rgba(0, 102, 145, 1);
+  height: 100vh;
+  height: 100dvh;
+  padding: 2rem;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+}
+
+.margin-btn {
+  margin-block: 2rem;
+}

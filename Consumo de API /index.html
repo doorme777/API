@@ -3,54 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" href="assets/happy.png" type="image/x-icon" />
+    <title>Gato</title>
   </head>
   <body>
-    <h1>Gatos</h1>
-    <span id="error"></span>
-    <h2>Michis random</h2>
-
+    <h1>Pagina de gatos random</h1>
     <section id="recomendCat">
-      <article>
-        <img id="img1" alt="Gato random" />
-        <button id="btn1" onclick="saveFavouriteCat()">Favorite</button>
-      </article>
+      <h2>Michis random</h2>
+      <div class="scroll-smooth flex">
+        <article id="img1" class="container">
+        <div class="wrapper">
+            <div class="banner-image"> </div>
+            <h3> Toyota Supra</h3>
 
-      <article>
-        <figure>
-          <img id="img2" alt="Gato random" />
-        </figure>
+            </div>
+            <div class="button-wrapper"> 
+                <button id="btn1" class="btn fill">FAVOURITES</button>
+            </div>
+        </article>
 
-        <button id="btn2" onclick="saveFavouriteCat()">Favorite</button>
-      </article>
-
-      <article>
-        <img id="img3" alt="Gato random" />
-        <button id="btn3" onclick="saveFavouriteCat()">Favorite</button>
-      </article>
+        <article id="img1" class="container">
+            <div class="wrapper">
+                <div class="banner-image"> </div>
+                <h3> Toyota Supra</h3>
+    
+                </div>
+                <div class="button-wrapper"> 
+                <button id="btn2" class="btn fill">FAVOURITES</button>
+                </div>
+        </article>
+    
+        <article id="img1" class="container">
+            <div class="wrapper">
+                <div class="banner-image"> </div>
+                <h3> Toyota Supra</h3>
+    
+                </div>
+                <div class="button-wrapper"> 
+                <button id="btn3" class="btn fill">FAVOURITES</button>
+                </div>
+        </article>
+    </div>
+  
+      </div>
+        <button onclick="randomCat()" class="margin-btn btn fill">NEW IMAGES</button>
+      
     </section>
 
-    <button onclick="randomCat()" class="center">New images</button>
-
-    <section id="uploadingCat">
+    <section id="uploadingCat" class="position-center">
       <h3>Sube la foto de tu gato</h3>
-      <form id="uploadingForm" method="POST" enctype="multipart/form-data">
-        <label for="file" class="custom-file-upload"
-          >Selecciona la foto<i class="fa-solid fa-camera"></i
-        ></label>
-        <input id="file" type="file" name="file" onchange="previewImage()" />
+      <form id="uploadingForm" method="POST" enctype="multipart/form-data" class="flex-column">
+        <label for="file" class="title-form text"
+          >Select your picture <b class="bold">here.</b></label>
+        <input id="file" type="file" name="file" onchange="previewImage()"" value/>
         <img id="preview" />
-        <button id="submitDog" type="button" onclick="uploadPhotoCat()">
-          Subir foto de tu Gato
-        </button>
+
+        <div class="buttons-form">
+          <button id="submitDog" type="button" onclick="uploadPhotoCat()" class="btn outline">
+            Clean
+          </button>
+          <button id="submitDog" type="button" onclick="uploadPhotoCat()" class="btn fill">
+            Upload your picture's
+          </button>
+        </div>
       </form>
     </section>
 
-    <h2>Gatos favoritos</h2>
+    <section >
+      <h2>Gatos favoritos</h2>
 
-    <section id="favCat"></section>
-
-    <script src="main.js"></script>
+      <div id="favCat" class="flex">
+        <article id="img1" class="container">
+          <div class="wrapper">
+              <div class="banner-image"> </div>
+              <h3> Toyota Supra</h3>
+      
+              </div>
+              <div class="button-wrapper"> 
+              <button id="btn3" class="btn fill">FAVOURITES</button>
+              </div>
+      </article>
+      
+      
+      <article id="img1" class="container">
+        <div class="wrapper">
+            <div class="banner-image"> </div>
+            <h3> Toyota Supra</h3>
+      
+            </div>
+            <div class="button-wrapper"> 
+            <button id="btn3" class="btn fill">FAVOURITES</button>
+            </div>
+      </article>
+      </div>
+ 
+    </section>
   </body>
 </html>

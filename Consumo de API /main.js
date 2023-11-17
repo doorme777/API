@@ -9,6 +9,9 @@ async function randomCat() {
     const res = await fetch(RANDOM_CAT);
     const data = await res.json();
 
+    console.log(data[0]?.breeds);
+    console.log(data[0]);
+
     if (res.status !== 200) {
       spanError.innerHTML = `Hubo un ERROR tipo ${data.status}`;
     } else {

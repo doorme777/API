@@ -1,0 +1,47 @@
+.position-center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4rem;
+  margin-block-end: 2rem;
+  height: 50vh;
+  width: 50vw;
+  background-color: rgba(17, 25, 40, 0.25);
+  border-radius: 12px;
+}
+
+.flex-column {
+  height: 100%;
+  width: 100%;
+}
+
+#file {
+  display: none;
+}
+
+#preview {
+  width: 100%;
+  height: 20vh;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.buttons-form {
+  margin-inline-start: 34%;
+  margin-block-start: 8px;
+}
+
+.buttons-form + button {
+  margin-inline-end: 12pxs;
+}
+
+.title-form {
+  display: block;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.bold {
+  font-weight: bold;
+}
