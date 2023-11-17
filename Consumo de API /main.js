@@ -1,5 +1,7 @@
+const API_KEY =
+  "live_u2vRDbfo33QRy7IYZfcAOqZC551LDVlSkZh1xA6gKFaJoPdI2m3bgtugBJoIRvg9";
 const RANDOM_CAT = "https://api.thecatapi.com/v1/images/search?limit=3";
-const FAV_CAT = "https://api.thecatapi.com/v1/favourites";
+const FAV_CAT_URL = "https://api.thecatapi.com/v1/favourites";
 const DELETE_CAT = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 const UPLO_CAT = "https://api.thecatapi.com/v1/images/upload";
 const spanError = document.getElementById("error");
@@ -9,26 +11,30 @@ async function randomCat() {
     const res = await fetch(RANDOM_CAT);
     const data = await res.json();
 
-    console.log(data[0]?.breeds);
-    console.log(data[0]);
+    console.log(data);
 
     if (res.status !== 200) {
       spanError.innerHTML = `Hubo un ERROR tipo ${data.status}`;
     } else {
-      const img1 = document.getElementById("img1");
-      const img2 = document.getElementById("img2");
-      const img3 = document.getElementById("img3");
-      const btn1 = document.getElementById("btn1");
-      const btn2 = document.getElementById("btn2");
-      const btn3 = document.getElementById("btn3");
+      const IMG_RANDOM = [
+        {
+          img: document.getElementById("img1"),
+          btn: document.getElementById("btn1"),
+        },
+        {
+          img: document.getElementById("img2"),
+          btn: document.getElementById("btn2"),
+        },
+        {
+          img: document.getElementById("img3"),
+          btn: document.getElementById("btn3"),
+        },
+      ];
 
-      img1.src = data[0].url;
-      img2.src = data[1].url;
-      img3.src = data[2].url;
-
-      btn1.onclick = () => saveFavouriteCat(data[0].id);
-      btn2.onclick = () => saveFavouriteCat(data[1].id);
-      btn3.onclick = () => saveFavouriteCat(data[2].id);
+      IMG_RANDOM.forEach((elemento, index) => {
+        elemento.img.src = data[index]?.url;
+        elemento.btn.onclick = () => saveFavouriteCat(data[index]?.id);
+      });
     }
   } catch (error) {
     spanError.innerHTML = "Hubo un error en la solicitud.";
@@ -37,46 +43,64 @@ async function randomCat() {
 
 async function loadFavCat() {
   try {
-    const res = await fetch(FAV_CAT, {
+    const res = await fetch(FAV_CAT_URL, {
       headers: {
-        "x-api-key":
-          "live_u2vRDbfo33QRy7IYZfcAOqZC551LDVlSkZh1xA6gKFaJoPdI2m3bgtugBJoIRvg9",
+        "x-api-key": API_KEY,
       },
     });
-    const data = await res.json();
 
-    if (res.status !== 200) {
+    if (!res.ok) {
+      const data = await res.json();
       spanError.innerHTML = `Hubo un ERROR tipo ${data.status}`;
-    } else {
-      const section = document.getElementById("favCat");
-      section.innerHTML = "";
-      data.forEach((michi) => {
-        const article = document.createElement("article");
-        const img = document.createElement("img");
-        const button = document.createElement("button");
-        const btnText = document.createTextNode("Borrar gato :(");
-
-        img.src = michi.image.url;
-        button.appendChild(btnText);
-        button.onclick = () => deleteFavouriteCat(michi.id);
-        article.appendChild(img);
-        article.appendChild(button);
-        section.appendChild(article);
-      });
+      return;
     }
+
+    const section = document.getElementById("favCat");
+    section.innerHTML = "";
+
+    const renderFavCatCard = (michi) => {
+      const article = document.createElement("article");
+
+      // Parte de arriba de la card
+      const div1 = document.createElement("div");
+      const img = document.createElement("img");
+
+      // Parte de abajo de la card
+      const div2 = document.createElement("div");
+      const button = document.createElement("button");
+      const btnText = document.createTextNode("DELETE");
+
+      div1.classList.add("wrapper");
+      img.classList.add("banner-image");
+      img.src = michi.image.url;
+      div2.appendChild(img);
+
+      div2.classList.add("button-wrapper");
+      button.classList.add("btn", "fill", "delete");
+      button.appendChild(btnText);
+      button.onclick = () => deleteFavouriteCat(michi.id);
+      div2.appendChild(button);
+
+      article.classList.add("container");
+      article.appendChild(div1);
+      article.appendChild(div2);
+      section.appendChild(article);
+    };
+
+    const data = await res.json();
+    data.forEach(renderFavCatCard);
   } catch (error) {
-    spanError.innerHTML = "Hubo un error en la solicitud.";
+    spanError.innerHTML = `Hubo un error en la solicitud. ${error}`;
   }
 }
 
 async function saveFavouriteCat(id) {
   try {
-    const res = await fetch(FAV_CAT, {
+    const res = await fetch(FAV_CAT_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key":
-          "live_u2vRDbfo33QRy7IYZfcAOqZC551LDVlSkZh1xA6gKFaJoPdI2m3bgtugBJoIRvg9",
+        "x-api-key": API_KEY,
       },
       body: JSON.stringify({
         image_id: id,
@@ -99,8 +123,7 @@ async function deleteFavouriteCat(id) {
   const res = await fetch(DELETE_CAT(id), {
     method: "DELETE",
     headers: {
-      "x-api-key":
-        "live_u2vRDbfo33QRy7IYZfcAOqZC551LDVlSkZh1xA6gKFaJoPdI2m3bgtugBJoIRvg9",
+      "x-api-key": API_KEY,
     },
   });
   const data = await res.json();
@@ -146,6 +169,15 @@ function previewImage() {
     };
     fileReader.readAsDataURL(file[0]);
   }
+}
+
+function resetForm() {
+  let form = document.getElementById("uploadingForm");
+
+  form.reset();
+
+  var previewImage = document.getElementById("preview");
+  previewImage.src = "";
 }
 
 randomCat();

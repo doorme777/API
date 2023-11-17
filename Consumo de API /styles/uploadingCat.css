@@ -28,6 +28,8 @@
 }
 
 .buttons-form {
+  display: flex;
+  flex-wrap: nowrap;
   margin-inline-start: 34%;
   margin-block-start: 8px;
 }

@@ -9,12 +9,13 @@
   </head>
   <body>
     <h1>Pagina de gatos random</h1>
+    <span id="error"></span>
     <section id="recomendCat">
       <h2>Michis random</h2>
       <div class="scroll-smooth flex">
-        <article id="img1" class="container">
+        <article class="container">
         <div class="wrapper">
-            <div class="banner-image"> </div>
+            <img id="img1" class="banner-image"> </img>
             <h3> Toyota Supra</h3>
 
             </div>
@@ -23,9 +24,9 @@
             </div>
         </article>
 
-        <article id="img1" class="container">
+        <article class="container">
             <div class="wrapper">
-                <div class="banner-image"> </div>
+                <img id="img2" class="banner-image"> </img>
                 <h3> Toyota Supra</h3>
     
                 </div>
@@ -34,12 +35,12 @@
                 </div>
         </article>
     
-        <article id="img1" class="container">
+        <article class="container">
             <div class="wrapper">
-                <div class="banner-image"> </div>
+                <img id="img3" class="banner-image"> </img>
                 <h3> Toyota Supra</h3>
     
-                </div>
+            </div>
                 <div class="button-wrapper"> 
                 <button id="btn3" class="btn fill">FAVOURITES</button>
                 </div>
@@ -60,7 +61,7 @@
         <img id="preview" />
 
         <div class="buttons-form">
-          <button id="submitDog" type="button" onclick="uploadPhotoCat()" class="btn outline">
+          <button id="submitDog" type="reset" onclick="resetForm()" class="btn outline">
             Clean
           </button>
           <button id="submitDog" type="button" onclick="uploadPhotoCat()" class="btn fill">
@@ -73,31 +74,12 @@
     <section >
       <h2>Gatos favoritos</h2>
 
-      <div id="favCat" class="flex">
-        <article id="img1" class="container">
-          <div class="wrapper">
-              <div class="banner-image"> </div>
-              <h3> Toyota Supra</h3>
+      <div id="favCat" class="grid">
       
-              </div>
-              <div class="button-wrapper"> 
-              <button id="btn3" class="btn fill">FAVOURITES</button>
-              </div>
-      </article>
-      
-      
-      <article id="img1" class="container">
-        <div class="wrapper">
-            <div class="banner-image"> </div>
-            <h3> Toyota Supra</h3>
-      
-            </div>
-            <div class="button-wrapper"> 
-            <button id="btn3" class="btn fill">FAVOURITES</button>
-            </div>
-      </article>
       </div>
  
     </section>
+
+    <script src="main.js"></script>
   </body>
 </html>
